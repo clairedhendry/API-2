@@ -3,20 +3,24 @@
 function getRandomDogs(number) {
    const value = $("input#input-number").val();
    
-    if ((number <= 50) && (number > 0)) {
-    const fetchNumber = `https://dog.ceo/api/breeds/image/random/${number}`
+    if ((number > 50) | (number < 1)) {
+      alert("please choose between 1 and 50 dogs")
+    
+}  else {
+   const fetchNumber = `https://dog.ceo/api/breeds/image/random/${number}`
     fetch(fetchNumber)
     .then(response => response.json())
     .then(responseJson => displayDogs(responseJson))
     .catch(error => alert("something's not right."))
-    
-}  else { 
-    fetch('https://dog.ceo/api/breeds/image/random/3')
-    .then(response => response.json())
-    .then(responseJson => displayDogs(responseJson))
-    .catch(error => alert("something's not right."))
+  
+   
 }
 }
+
+//  fetch('https://dog.ceo/api/breeds/image/random/3')
+   //  .then(response => response.json())
+   //  .then(responseJson => displayDogs(responseJson))
+   //  .catch(error => alert("something's not right."))
 
 function displayDogs(responseJson) {
    $("dog-images, img").remove();
